@@ -3,15 +3,13 @@ package com.codeborne.pdftest.matchers;
 import com.codeborne.pdftest.PDF;
 import org.junit.Test;
 
-import java.io.IOException;
-
 import static com.codeborne.pdftest.PDFMatchers.containsText;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 public class ContainsTextTest {
   @Test
-  public void canAssertThatPdfContainsText() throws IOException {
+  public void canAssertThatPdfContainsText() {
     PDF pdf = new PDF(getClass().getClassLoader().getResource("50quickideas.pdf"));
     assertThat(pdf, containsText("50 Quick Ideas to Improve your User Stories"));
     assertThat(pdf, containsText("Gojko Adzic"));
@@ -21,13 +19,13 @@ public class ContainsTextTest {
   }
 
   @Test
-  public void shouldBeCaseSensitive() throws IOException {
+  public void shouldBeCaseSensitive() {
     PDF pdf = new PDF(getClass().getClassLoader().getResource("50quickideas.pdf"));
     assertThat(pdf, not(containsText("50 quick ideas")));
   }
 
   @Test
-  public void shouldIgnoreWhitespaces() throws IOException {
+  public void shouldIgnoreWhitespaces() {
     PDF pdf = new PDF(getClass().getClassLoader().getResource("50quickideas.pdf"));
     assertThat(pdf, containsText("Gojko       Adzic"));
     assertThat(pdf, containsText("\tGojko \t Adzic\t"));

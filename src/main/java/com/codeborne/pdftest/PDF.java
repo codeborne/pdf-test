@@ -4,6 +4,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
 
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.nio.file.Files;
@@ -51,39 +52,65 @@ public class PDF {
     }
   }
 
-  public PDF(File pdfFile) throws IOException {
-    this(pdfFile.getAbsolutePath(), Files.readAllBytes(Paths.get(pdfFile.getAbsolutePath())));
+  public PDF(File pdfFile) {
+    this(pdfFile.getAbsolutePath(), readFile(pdfFile));
   }
 
-  public PDF(URL url) throws IOException {
+  private static byte[] readFile(File pdfFile) {
+    try {
+      return Files.readAllBytes(Paths.get(pdfFile.getAbsolutePath()));
+    }
+    catch (IOException e) {
+      throw new IllegalArgumentException(e);
+    }
+  }
+
+  public PDF(URL url) {
     this(url.toString(), readBytes(url));
   }
 
-  public PDF(URI uri) throws IOException {
-    this(uri.toURL());
+  public PDF(URI uri) {
+    this(toURL(uri));
+  }
+
+  private static URL toURL(URI uri) {
+    try {
+      return uri.toURL();
+    }
+    catch (MalformedURLException e) {
+      throw new IllegalArgumentException(e);
+    }
   }
 
   public PDF(byte[] content) {
     this("", content);
   }
 
-  public PDF(InputStream inputStream) throws IOException {
+  public PDF(InputStream inputStream) {
     this(readBytes(inputStream));
   }
 
-  private static byte[] readBytes(URL url) throws IOException {
+  private static byte[] readBytes(URL url) {
     try (InputStream inputStream = url.openStream()) {
       return readBytes(inputStream);
     }
+    catch (IOException e) {
+      throw new IllegalArgumentException(e);
+    }
   }
   
-  private static byte[] readBytes(InputStream inputStream) throws IOException {
+  private static byte[] readBytes(InputStream inputStream) {
     ByteArrayOutputStream result = new ByteArrayOutputStream();
-    byte[] buffer = new byte[2048];
+    try {
+      byte[] buffer = new byte[2048];
 
-    int nRead;
-    while ((nRead = inputStream.read(buffer, 0, buffer.length)) != -1) {
-      result.write(buffer, 0, nRead);
+      int nRead;
+      while ((nRead = inputStream.read(buffer, 0, buffer.length)) != -1) {
+        result.write(buffer, 0, nRead);
+      }
+    }
+    catch (IOException e) {
+      throw new IllegalArgumentException(e);
     }
 
     return result.toByteArray();
