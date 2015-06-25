@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 group='com.codeborne'
-archivesBaseName = 'pdfest'
+archivesBaseName = 'pdf-test'
 version='1.1-SNAPSHOT'
 
 compileJava.options.debugOptions.debugLevel = "source,lines,vars"
@@ -30,7 +30,7 @@ task libs(type: Sync) {
 compileJava.dependsOn libs
 
 test {
-  include 'com/codeborne/pdfest/**/*'
+  include 'com/codeborne/pdftest/**/*'
   systemProperties['file.encoding'] = 'UTF-8'
   testLogging.showStandardStreams = true
 }

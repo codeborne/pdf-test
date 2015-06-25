@@ -1,4 +1,4 @@
-package com.codeborne.pdfest;
+package com.codeborne.pdftest;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;

@@ -1,10 +1,10 @@
-package com.codeborne.pdfest;
+package com.codeborne.pdftest;
 
 import org.junit.Test;
 
 import java.io.IOException;
 
-import static com.codeborne.pdfest.PDFMatchers.containsText;
+import static com.codeborne.pdftest.PDFMatchers.containsText;
 import static org.junit.Assert.assertThat;
 
 public class PDFContainsTextTest {

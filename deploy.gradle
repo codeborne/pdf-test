@@ -21,13 +21,13 @@ uploadArchives {
             pom.project {
               name archivesBaseName
               packaging 'jar'
-              description 'PDFest: PDF testing library'
-              url 'https://github.com/codeborne/pdfest'
+              description 'PDF Test: PDF testing library'
+              url 'https://github.com/codeborne/pdf-test'
 
                scm {
-                   url 'scm:git@github.com:codeborne/pdfest.git'
-                   connection 'scm:git@github.com:codeborne/pdfest.git'
-                   developerConnection 'scm:git@github.com:codeborne/pdfest.git'
+                   url 'scm:git@github.com:codeborne/pdf-test.git'
+                   connection 'scm:git@github.com:codeborne/pdf-test.git'
+                   developerConnection 'scm:git@github.com:codeborne/pdf-test.git'
                }
 
                licenses {

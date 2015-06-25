@@ -1,4 +1,4 @@
-package com.codeborne.pdfest;
+package com.codeborne.pdftest;
 
 import org.junit.Test;
 

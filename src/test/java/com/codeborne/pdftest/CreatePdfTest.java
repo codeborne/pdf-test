@@ -1,4 +1,4 @@
-package com.codeborne.pdfest;
+package com.codeborne.pdftest;
 
 import org.junit.Test;
 
@@ -10,13 +10,8 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
-import static com.codeborne.pdfest.PDFMatchers.containsText;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.nullValue;
+import static com.codeborne.pdftest.PDFMatchers.containsText;
 import static org.junit.Assert.assertThat;
 
 public class CreatePdfTest {

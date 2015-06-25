@@ -1,6 +1,6 @@
-package com.codeborne.pdfest;
+package com.codeborne.pdftest;
 
-import com.codeborne.pdfest.matchers.PDFContainsString;
+import com.codeborne.pdftest.matchers.PDFContainsString;
 import org.hamcrest.Matcher;
 
 public class PDFMatchers {

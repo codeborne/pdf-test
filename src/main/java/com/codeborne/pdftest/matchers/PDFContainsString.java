@@ -1,6 +1,6 @@
-package com.codeborne.pdfest.matchers;
+package com.codeborne.pdftest.matchers;
 
-import com.codeborne.pdfest.PDF;
+import com.codeborne.pdftest.PDF;
 import org.hamcrest.Description;
 import org.hamcrest.SelfDescribing;
 import org.hamcrest.TypeSafeMatcher;
