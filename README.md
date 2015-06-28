@@ -25,7 +25,7 @@ If you use **Maven**, add the following dependency to pom.xml:
   <dependency>
     <groupId>com.codeborne</groupId>
     <artifactId>pdf-test</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
   </dependency>
 ```
 
