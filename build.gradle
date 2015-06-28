@@ -3,7 +3,7 @@ apply plugin: 'maven'
 
 group='com.codeborne'
 archivesBaseName = 'pdf-test'
-version='1.2-SNAPSHOT'
+version='1.2'
 
 compileJava.options.debugOptions.debugLevel = "source,lines,vars"
 sourceCompatibility = 1.7
