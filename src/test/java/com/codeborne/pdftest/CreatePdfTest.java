@@ -17,7 +17,7 @@ import static org.junit.Assert.assertThat;
 public class CreatePdfTest {
   @Test
   public void fromFile() throws URISyntaxException, IOException {
-    File file = new File(getClass().getClassLoader().getResource("50quickideas.pdf").toURI());
+    File file = new File("src/test/resources/50quickideas.pdf");
     assertThat(new PDF(file), containsText("50 Quick Ideas"));
   }
   

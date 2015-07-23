@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
 public class PDFContainsTextTest {
   @Test
   public void canAssertThatPdfContainsText() {
-    PDF pdf = new PDF(getClass().getClassLoader().getResource("50quickideas.pdf"));
+    PDF pdf = new PDF(new File("src/test/resources/50quickideas.pdf"));
     assertThat(pdf, containsText("50 Quick Ideas to Improve your User Stories"));
   }
 }
@@ -32,7 +32,7 @@ If you use **Maven**, add the following dependency to pom.xml:
 If you use **Gradle**, add the following dependency to build.gradle:
 
 ```groovy
-  testCompile 'com.codeborne:pdf-test:1.1'
+  testCompile 'com.codeborne:pdf-test:1.2'
 ```
 
 ## How to contribute
