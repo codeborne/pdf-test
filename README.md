@@ -1,10 +1,13 @@
 # PDF Test
 PDF testing library
 
+Be sure that your code generates correct PDF!
+
 ## How to use
 
 ```java
-import static com.codeborne.pdftest.PDFMatchers.containsText;
+import com.codeborne.pdftest.PDF;
+import static com.codeborne.pdftest.PDF.*;
 import static org.junit.Assert.assertThat;
 
 public class PDFContainsTextTest {
@@ -25,14 +28,14 @@ If you use **Maven**, add the following dependency to pom.xml:
   <dependency>
     <groupId>com.codeborne</groupId>
     <artifactId>pdf-test</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
   </dependency>
 ```
 
 If you use **Gradle**, add the following dependency to build.gradle:
 
 ```groovy
-  testCompile 'com.codeborne:pdf-test:1.2'
+  testCompile 'com.codeborne:pdf-test:1.3'
 ```
 
 ## How to contribute
