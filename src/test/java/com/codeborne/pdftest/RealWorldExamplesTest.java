@@ -2,7 +2,7 @@ package com.codeborne.pdftest;
 
 import org.junit.Test;
 
-import static com.codeborne.pdftest.PDFMatchers.containsText;
+import static com.codeborne.pdftest.PDF.containsText;
 import static org.junit.Assert.assertThat;
 
 public class RealWorldExamplesTest {

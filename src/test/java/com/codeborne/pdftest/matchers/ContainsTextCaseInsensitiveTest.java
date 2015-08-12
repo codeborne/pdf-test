@@ -3,7 +3,7 @@ package com.codeborne.pdftest.matchers;
 import com.codeborne.pdftest.PDF;
 import org.junit.Test;
 
-import static com.codeborne.pdftest.PDFMatchers.containsTextCaseInsensitive;
+import static com.codeborne.pdftest.PDF.containsTextCaseInsensitive;
 import static org.junit.Assert.assertThat;
 
 public class ContainsTextCaseInsensitiveTest {

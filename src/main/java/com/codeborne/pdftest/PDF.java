@@ -1,15 +1,20 @@
 package com.codeborne.pdftest;
 
+import com.codeborne.pdftest.matchers.ContainsExactText;
+import com.codeborne.pdftest.matchers.ContainsText;
+import com.codeborne.pdftest.matchers.ContainsTextCaseInsensitive;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
+import org.hamcrest.Matcher;
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Calendar;
+
+import static com.codeborne.pdftest.IO.readBytes;
+import static com.codeborne.pdftest.IO.readFile;
+import static com.codeborne.pdftest.IO.toURL;
 
 public class PDF {
   public final byte[] content;
@@ -55,16 +60,7 @@ public class PDF {
   public PDF(File pdfFile) {
     this(pdfFile.getAbsolutePath(), readFile(pdfFile));
   }
-
-  private static byte[] readFile(File pdfFile) {
-    try {
-      return Files.readAllBytes(Paths.get(pdfFile.getAbsolutePath()));
-    }
-    catch (IOException e) {
-      throw new IllegalArgumentException(e);
-    }
-  }
-
+  
   public PDF(URL url) {
     this(url.toString(), readBytes(url));
   }
@@ -72,16 +68,7 @@ public class PDF {
   public PDF(URI uri) {
     this(toURL(uri));
   }
-
-  private static URL toURL(URI uri) {
-    try {
-      return uri.toURL();
-    }
-    catch (MalformedURLException e) {
-      throw new IllegalArgumentException(e);
-    }
-  }
-
+  
   public PDF(byte[] content) {
     this("", content);
   }
@@ -89,30 +76,14 @@ public class PDF {
   public PDF(InputStream inputStream) {
     this(readBytes(inputStream));
   }
-
-  private static byte[] readBytes(URL url) {
-    try (InputStream inputStream = url.openStream()) {
-      return readBytes(inputStream);
-    }
-    catch (IOException e) {
-      throw new IllegalArgumentException(e);
-    }
-  }
   
-  private static byte[] readBytes(InputStream inputStream) {
-    ByteArrayOutputStream result = new ByteArrayOutputStream();
-    try {
-      byte[] buffer = new byte[2048];
-
-      int nRead;
-      while ((nRead = inputStream.read(buffer, 0, buffer.length)) != -1) {
-        result.write(buffer, 0, nRead);
-      }
-    }
-    catch (IOException e) {
-      throw new IllegalArgumentException(e);
-    }
-
-    return result.toByteArray();
+  public static Matcher<PDF> containsText(String text) {
+    return new ContainsText(text);
+  }
+  public static Matcher<PDF> containsExactText(String text) {
+    return new ContainsExactText(text);
+  }
+  public static Matcher<PDF> containsTextCaseInsensitive(String text) {
+    return new ContainsTextCaseInsensitive(text);
   }
 }

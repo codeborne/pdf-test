@@ -3,7 +3,7 @@ package com.codeborne.pdftest.matchers;
 import com.codeborne.pdftest.PDF;
 import org.junit.Test;
 
-import static com.codeborne.pdftest.PDFMatchers.containsText;
+import static com.codeborne.pdftest.PDF.containsText;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 

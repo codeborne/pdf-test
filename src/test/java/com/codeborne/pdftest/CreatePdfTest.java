@@ -11,7 +11,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static com.codeborne.pdftest.PDFMatchers.containsText;
+import static com.codeborne.pdftest.PDF.containsText;
 import static org.junit.Assert.assertThat;
 
 public class CreatePdfTest {
