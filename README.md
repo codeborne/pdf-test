@@ -45,4 +45,15 @@ You are welcome to suggest your features and fixes!
 Just fork the [pdf-test](https://github.com/codeborne/pdf-test) and create pull request. 
 Any contribution is important!
 
-Become part of open-source community!
+** Become part of open-source community! **
+
+# Thanks
+
+Many thanks to these incredible tools that help us creating open-source software:
+
+![Intellij IDEA](http://www.jetbrains.com/idea/docs/logo_intellij_idea.png)
+
+![YourKit Java profiler](http://selenide.org/images/yourkit.png)
+
+# License
+pdf-test is open-source project and distributed under [MIT](http://choosealicense.com/licenses/mit/) license
