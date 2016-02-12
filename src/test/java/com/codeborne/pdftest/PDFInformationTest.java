@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.TimeZone;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.core.Is.is;
@@ -15,6 +16,8 @@ import static org.junit.Assert.assertThat;
 public class PDFInformationTest {
   @Test
   public void canGetInformationFromPdf() throws URISyntaxException, IOException, ParseException {
+    TimeZone.setDefault(TimeZone.getTimeZone("Europe/Tallinn"));
+    
     PDF pdf = new PDF(getClass().getClassLoader().getResource("50quickideas.pdf"));
     assertThat(pdf.author, equalTo("Gojko Adzic"));
     assertThat(pdf.creationDate.getTime(),
