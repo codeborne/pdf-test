@@ -1,0 +1,21 @@
+== Changelog
+
+=== 1.4
+* upgraded to pdfbox 2.0.0
+* change license to less restrictive MIT
+
+=== 1.3 (Released 12.08.2015)
+* upgrade to pdfbox 1.8.10
+* simplify API: all public methods are in class PDF
+
+=== 1.2 (Released 28.06.2015)
+* Add matcher `containsTextCaseInsensitive()`
+
+=== 1.1 (Released 25.06.2015)
+* Method `containsText()` now ignores whitespaces and linebreaks
+* Add matcher `containsExactText()`
+
+=== 1.0 (Released 25.06.2015)
+* First version with the only function `assertThat(pdf, containsText("#50quickideas"));`
+* using to pdfbox 1.8.9
+* using license LGPL 3

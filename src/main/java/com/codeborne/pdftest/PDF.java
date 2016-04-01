@@ -4,7 +4,7 @@ import com.codeborne.pdftest.matchers.ContainsExactText;
 import com.codeborne.pdftest.matchers.ContainsText;
 import com.codeborne.pdftest.matchers.ContainsTextCaseInsensitive;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.util.PDFTextStripper;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.hamcrest.Matcher;
 
 import java.io.*;
