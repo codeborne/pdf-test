@@ -3,7 +3,7 @@ apply plugin: 'maven'
 
 group='com.codeborne'
 archivesBaseName = 'pdf-test'
-version='1.4'
+version='1.5-SNAPSHOT'
 
 [compileJava, compileTestJava]*.options.collect {options -> options.encoding = 'UTF-8'}
 [compileJava, compileTestJava]*.options.collect {options -> options.debug = true}
