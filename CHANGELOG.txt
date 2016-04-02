@@ -3,6 +3,7 @@
 === 1.4
 * upgraded to pdfbox 2.0.0
 * change license to less restrictive MIT
+* add fields PDF for checking signed PDFs: signed, signerName, signatureTime.
 
 === 1.3 (Released 12.08.2015)
 * upgrade to pdfbox 1.8.10

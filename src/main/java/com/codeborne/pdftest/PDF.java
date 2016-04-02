@@ -4,6 +4,7 @@ import com.codeborne.pdftest.matchers.ContainsExactText;
 import com.codeborne.pdftest.matchers.ContainsText;
 import com.codeborne.pdftest.matchers.ContainsTextCaseInsensitive;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.interactive.digitalsignature.PDSignature;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.hamcrest.Matcher;
 
@@ -29,6 +30,9 @@ public class PDF {
   public final String subject;
   public final String title;
   public final boolean encrypted;
+  public final boolean signed;
+  public final String signerName;
+  public final Calendar signatureTime;
 
   private PDF(String name, byte[] content) {
     this.content = content;
@@ -46,6 +50,11 @@ public class PDF {
         this.subject = pdf.getDocumentInformation().getSubject();
         this.title = pdf.getDocumentInformation().getTitle();
         this.encrypted = pdf.isEncrypted();
+        
+        PDSignature signature = pdf.getLastSignatureDictionary();
+        this.signed = signature != null;
+        this.signerName = signature == null ? null : signature.getName();
+        this.signatureTime = signature == null ? null : signature.getSignDate();
       }
       finally {
         try {pdf.close();}

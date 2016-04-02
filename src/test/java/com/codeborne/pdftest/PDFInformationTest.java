@@ -11,6 +11,8 @@ import java.util.TimeZone;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.nullValue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 public class PDFInformationTest {
@@ -29,5 +31,8 @@ public class PDFInformationTest {
     assertThat(pdf.producer, equalTo("xdvipdfmx (0.7.8)"));
     assertThat(pdf.subject, is(nullValue()));
     assertThat(pdf.title, equalTo("50 Quick Ideas to Improve your User Stories"));
+    assertFalse(pdf.signed);
+    assertNull(pdf.signerName);
+    assertNull(pdf.signatureTime);
   }
 }
