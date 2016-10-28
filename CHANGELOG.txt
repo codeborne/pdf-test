@@ -1,5 +1,8 @@
 == Changelog
 
+=== 1.5
+* upgraded to pdfbox 2.0.3
+
 === 1.4
 * upgraded to pdfbox 2.0.0
 * change license to less restrictive MIT
