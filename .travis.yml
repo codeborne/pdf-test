@@ -1,0 +1,17 @@
+branches:
+  only:
+    - master
+  
+language: java
+cache:
+  directories:
+  - $HOME/.gradle
+
+script: "./gradle clean check test"
+
+jdk:
+  - openjdk7
+
+after_success:
+- ./gradle jacocoTestReport coveralls
+- bash <(curl -s https://codecov.io/bash)
