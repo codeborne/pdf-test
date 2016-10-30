@@ -16,13 +16,13 @@ import static org.junit.Assert.assertThat;
 
 public class CreatePdfTest {
   @Test
-  public void fromFile() throws URISyntaxException, IOException {
+  public void fromFile() throws IOException {
     File file = new File("src/test/resources/50quickideas.pdf");
     assertThat(new PDF(file), containsText("50 Quick Ideas"));
   }
   
   @Test
-  public void fromUrl() throws URISyntaxException, IOException {
+  public void fromUrl() throws IOException {
     URL url = getClass().getClassLoader().getResource("50quickideas.pdf");
     assertThat(new PDF(url), containsText("50 Quick Ideas"));
   }
@@ -34,7 +34,7 @@ public class CreatePdfTest {
   }
 
   @Test
-  public void fromInputStream() throws URISyntaxException, IOException {
+  public void fromInputStream() throws IOException {
     InputStream inputStream = getClass().getClassLoader().getResourceAsStream("50quickideas.pdf");
     assertThat(new PDF(inputStream), containsText("50 Quick Ideas"));
   }

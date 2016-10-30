@@ -11,11 +11,10 @@ import org.hamcrest.Matcher;
 import java.io.*;
 import java.net.URI;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.Calendar;
 
-import static com.codeborne.pdftest.IO.readBytes;
-import static com.codeborne.pdftest.IO.readFile;
-import static com.codeborne.pdftest.IO.toURL;
+import static java.nio.file.Files.readAllBytes;
 
 public class PDF {
   public final byte[] content;
@@ -38,8 +37,7 @@ public class PDF {
     this.content = content;
 
     try (InputStream inputStream = new ByteArrayInputStream(content)) {
-      PDDocument pdf = PDDocument.load(inputStream);
-      try {
+      try (PDDocument pdf = PDDocument.load(inputStream)) {
         this.text = new PDFTextStripper().getText(pdf);
         this.numberOfPages = pdf.getNumberOfPages();
         this.author = pdf.getDocumentInformation().getAuthor();
@@ -56,36 +54,50 @@ public class PDF {
         this.signerName = signature == null ? null : signature.getName();
         this.signatureTime = signature == null ? null : signature.getSignDate();
       }
-      finally {
-        try {pdf.close();}
-        catch (IOException ignore) {}
-      }
     }
     catch (Exception e) {
-      throw new IllegalArgumentException("Invalid PDF " + name, e);
+      throw new IllegalArgumentException("Invalid PDF file: " + name, e);
     }
   }
 
-  public PDF(File pdfFile) {
-    this(pdfFile.getAbsolutePath(), readFile(pdfFile));
+  public PDF(File pdfFile) throws IOException {
+    this(pdfFile.getAbsolutePath(), readAllBytes(Paths.get(pdfFile.getAbsolutePath())));
   }
   
-  public PDF(URL url) {
+  public PDF(URL url) throws IOException {
     this(url.toString(), readBytes(url));
   }
 
-  public PDF(URI uri) {
-    this(toURL(uri));
+  public PDF(URI uri) throws IOException {
+    this(uri.toURL());
   }
   
   public PDF(byte[] content) {
     this("", content);
   }
 
-  public PDF(InputStream inputStream) {
+  public PDF(InputStream inputStream) throws IOException {
     this(readBytes(inputStream));
   }
-  
+
+  private static byte[] readBytes(URL url) throws IOException {
+    try (InputStream inputStream = url.openStream()) {
+      return readBytes(inputStream);
+    }
+  }
+
+  private static byte[] readBytes(InputStream inputStream) throws IOException {
+    ByteArrayOutputStream result = new ByteArrayOutputStream(2048);
+    byte[] buffer = new byte[2048];
+
+    int nRead;
+    while ((nRead = inputStream.read(buffer, 0, buffer.length)) != -1) {
+      result.write(buffer, 0, nRead);
+    }
+
+    return result.toByteArray();
+  }
+
   public static Matcher<PDF> containsText(String text) {
     return new ContainsText(text);
   }

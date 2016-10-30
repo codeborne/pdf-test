@@ -3,7 +3,6 @@ package com.codeborne.pdftest;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
@@ -17,7 +16,7 @@ import static org.junit.Assert.assertThat;
 
 public class PDFInformationTest {
   @Test
-  public void canGetInformationFromPdf() throws URISyntaxException, IOException, ParseException {
+  public void canGetInformationFromPdf() throws IOException, ParseException {
     TimeZone.setDefault(TimeZone.getTimeZone("Europe/Tallinn"));
     
     PDF pdf = new PDF(getClass().getClassLoader().getResource("50quickideas.pdf"));
