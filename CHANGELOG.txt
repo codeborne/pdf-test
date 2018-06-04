@@ -2,6 +2,7 @@
 
 === 1.5.0
 * upgraded to pdfbox 2.0.9
+* upgraded to Java 8
 
 === 1.4
 * upgraded to pdfbox 2.0.0

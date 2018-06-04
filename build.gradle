@@ -21,8 +21,8 @@ version='1.5.0'
 [compileJava, compileTestJava]*.options.collect {options -> options.debug = true}
 compileJava.options.debugOptions.debugLevel = "source,lines,vars"
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 defaultTasks 'test', 'install'
 

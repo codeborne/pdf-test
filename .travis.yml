@@ -10,7 +10,7 @@ cache:
 script: "./gradle clean check test"
 
 jdk:
-  - openjdk7
+  - oraclejdk8
 
 after_success:
 - ./gradle jacocoTestReport coveralls
