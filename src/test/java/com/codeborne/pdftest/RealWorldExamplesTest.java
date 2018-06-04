@@ -2,6 +2,8 @@ package com.codeborne.pdftest;
 
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static com.codeborne.pdftest.PDF.containsText;
 import static org.junit.Assert.assertThat;
 
@@ -46,5 +48,17 @@ public class RealWorldExamplesTest {
     assertThat(pdf, containsText("БИК 044030790"));
     assertThat(pdf, containsText("Исполнен 24.06.2015"));
     assertThat(pdf, containsText("Код операции 169765333614"));
+  }
+
+  @Test
+  public void someWeirdPdf_singlePage() throws IOException {
+    PDF pdf = new PDF(getClass().getClassLoader().getResource("PO_11179_1520159715.pdf"));
+    assertThat(pdf, containsText("Purchase Order #11179"));
+  }
+
+  @Test
+  public void someWeirdPdf_multiplePages() throws IOException {
+    PDF pdf = new PDF(getClass().getClassLoader().getResource("PO_US-14602_1521108736.pdf"));
+    assertThat(pdf, containsText("Purchase Order #US-14602"));
   }
 }
