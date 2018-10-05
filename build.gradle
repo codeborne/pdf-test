@@ -15,7 +15,7 @@ apply plugin: 'com.github.kt3k.coveralls'
 
 group='com.codeborne'
 archivesBaseName = 'pdf-test'
-version='1.5.0'
+version='1.5.1-SNAPSHOT'
 
 [compileJava, compileTestJava]*.options.collect {options -> options.encoding = 'UTF-8'}
 [compileJava, compileTestJava]*.options.collect {options -> options.debug = true}
@@ -81,12 +81,6 @@ artifacts {
   archives jar
   archives sourcesJar
   archives javadocJar
-}
-
-task wrapper(type: Wrapper) {
-  gradleVersion = '4.7'
-  jarFile = './gradle-wrapper/gradle-wrapper.jar'
-  scriptFile = './gradle'
 }
 
 jacocoTestReport {
