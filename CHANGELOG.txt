@@ -1,5 +1,8 @@
 == Changelog
 
+=== 1.5.1
+* upgraded to pdfbox 2.0.12
+
 === 1.5.0
 * upgraded to pdfbox 2.0.9
 * upgraded to Java 8
