@@ -1,5 +1,8 @@
 == Changelog
 
+=== 1.5.2
+* upgraded to pdfbox 2.0.20 and JUnit 4.13
+
 === 1.5.1
 * upgraded to pdfbox 2.0.12
 

@@ -12,7 +12,7 @@ Be sure that your code generates correct PDF!
 ```java
 import com.codeborne.pdftest.PDF;
 import static com.codeborne.pdftest.PDF.*;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class PDFContainsTextTest {
   @Test
@@ -32,14 +32,14 @@ If you use **Maven**, add the following dependency to pom.xml:
   <dependency>
     <groupId>com.codeborne</groupId>
     <artifactId>pdf-test</artifactId>
-    <version>1.4</version>
+    <version>1.5.2</version>
   </dependency>
 ```
 
 If you use **Gradle**, add the following dependency to build.gradle:
 
 ```groovy
-  testCompile 'com.codeborne:pdf-test:1.4'
+  testCompile 'com.codeborne:pdf-test:1.5.2'
 ```
 
 ## How to contribute
