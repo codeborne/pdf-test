@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.io.IOException;
 
 import static com.codeborne.pdftest.PDF.containsText;
+import static com.codeborne.pdftest.PDF.doesNotContainText;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -26,6 +27,7 @@ public class ContainsTextTest {
   public void shouldBeCaseSensitive() throws IOException {
     PDF pdf = new PDF(getClass().getClassLoader().getResource("50quickideas.pdf"));
     assertThat(pdf, not(containsText("50 quick ideas")));
+    assertThat(pdf, doesNotContainText("50 quick ideas"));
   }
 
   @Test

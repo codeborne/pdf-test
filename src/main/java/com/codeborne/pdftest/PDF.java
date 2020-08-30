@@ -3,6 +3,8 @@ package com.codeborne.pdftest;
 import com.codeborne.pdftest.matchers.ContainsExactText;
 import com.codeborne.pdftest.matchers.ContainsText;
 import com.codeborne.pdftest.matchers.ContainsTextCaseInsensitive;
+import com.codeborne.pdftest.matchers.DoesNotContainExactText;
+import com.codeborne.pdftest.matchers.DoesNotContainText;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.interactive.digitalsignature.PDSignature;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -101,8 +103,14 @@ public class PDF {
   public static Matcher<PDF> containsText(String text) {
     return new ContainsText(text);
   }
+  public static Matcher<PDF> doesNotContainText(String text) {
+    return new DoesNotContainText(text);
+  }
   public static Matcher<PDF> containsExactText(String text) {
     return new ContainsExactText(text);
+  }
+  public static Matcher<PDF> doesNotContainExactText(String text) {
+    return new DoesNotContainExactText(text);
   }
   public static Matcher<PDF> containsTextCaseInsensitive(String text) {
     return new ContainsTextCaseInsensitive(text);
