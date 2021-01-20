@@ -60,14 +60,14 @@ public class PDF {
     }
   }
 
-  private PDF(String name, byte[] content, int start, int end) {
+  private PDF(String name, byte[] content, int startPage, int endPage) {
     this.content = content;
 
     try (InputStream inputStream = new ByteArrayInputStream(content)) {
       try (PDDocument pdf = PDDocument.load(inputStream)) {
         PDFTextStripper pdfTextStripper = new PDFTextStripper();
-        pdfTextStripper.setStartPage(start);
-        pdfTextStripper.setEndPage(end);
+        pdfTextStripper.setStartPage(startPage);
+        pdfTextStripper.setEndPage(endPage);
         this.text = pdfTextStripper.getText(pdf);
         this.numberOfPages = pdf.getNumberOfPages();
         this.author = pdf.getDocumentInformation().getAuthor();
@@ -110,24 +110,24 @@ public class PDF {
     this(readBytes(inputStream));
   }
 
-  public PDF(File pdfFile, int start, int end) throws IOException {
-    this(pdfFile.getAbsolutePath(), readAllBytes(Paths.get(pdfFile.getAbsolutePath())), start, end);
+  public PDF(File pdfFile, int startPage, int endPage) throws IOException {
+    this(pdfFile.getAbsolutePath(), readAllBytes(Paths.get(pdfFile.getAbsolutePath())), startPage, endPage);
   }
 
-  public PDF(URL url, int start, int end) throws IOException {
-    this(url.toString(), readBytes(url), start, end);
+  public PDF(URL url, int startPage, int endPage) throws IOException {
+    this(url.toString(), readBytes(url), startPage, endPage);
   }
 
-  public PDF(URI uri, int start, int end) throws IOException {
-    this(uri.toURL(), start, end);
+  public PDF(URI uri, int startPage, int endPage) throws IOException {
+    this(uri.toURL(), startPage, endPage);
   }
 
-  public PDF(byte[] content, int start, int end) {
-    this("", content, start, end);
+  public PDF(byte[] content, int startPage, int endPage) {
+    this("", content, startPage, endPage);
   }
 
-  public PDF(InputStream inputStream, int start, int end) throws IOException {
-    this(readBytes(inputStream), start, end);
+  public PDF(InputStream inputStream, int startPage, int endPage) throws IOException {
+    this(readBytes(inputStream), startPage, endPage);
   }
 
   private static byte[] readBytes(URL url) throws IOException {
