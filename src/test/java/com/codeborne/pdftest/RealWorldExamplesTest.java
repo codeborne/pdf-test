@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.io.IOException;
 
 import static com.codeborne.pdftest.PDF.containsText;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class RealWorldExamplesTest {
@@ -60,5 +61,28 @@ public class RealWorldExamplesTest {
   public void someWeirdPdf_multiplePages() throws IOException {
     PDF pdf = new PDF(getClass().getClassLoader().getResource("PO_US-14602_1521108736.pdf"));
     assertThat(pdf, containsText("Purchase Order #US-14602"));
+  }
+
+  @Test
+  public void someWeirdPdf_takeTheFirstPage() throws IOException {
+    PDF pdf = new PDF(getClass().getClassLoader().getResource("PO_US-14602_1521108736.pdf"), 1, 1);
+    assertThat(pdf, containsText("Purchase Order #US-14602"));
+    assertThat(pdf, not(containsText("STANDARD SELECTICA CONTRACT PERFORMANCE MANAGEMENT REPORTS")));
+  }
+
+  @Test
+  public void someWeirdPdf_takeTheSecondPage() throws IOException {
+    PDF pdf = new PDF(getClass().getClassLoader().getResource("PO_US-14602_1521108736.pdf"), 2, 2);
+    assertThat(pdf, containsText("STANDARD SELECTICA CONTRACT PERFORMANCE MANAGEMENT REPORTS"));
+    assertThat(pdf, not(containsText("Purchase Order #US-14602")));
+    assertThat(pdf, not(containsText("All Employment Contracts are grouped by Employee Status")));
+  }
+
+  @Test
+  public void someWeirdPdf_takeTheFirstAndSecondPage() throws IOException {
+    PDF pdf = new PDF(getClass().getClassLoader().getResource("PO_US-14602_1521108736.pdf"), 1, 2);
+    assertThat(pdf, containsText("STANDARD SELECTICA CONTRACT PERFORMANCE MANAGEMENT REPORTS"));
+    assertThat(pdf, containsText("Purchase Order #US-14602"));
+    assertThat(pdf, not(containsText("All Employment Contracts are grouped by Employee Status")));
   }
 }
