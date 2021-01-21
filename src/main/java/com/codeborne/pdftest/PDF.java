@@ -36,30 +36,7 @@ public class PDF {
   public final Calendar signatureTime;
 
   private PDF(String name, byte[] content) {
-    this.content = content;
-
-    try (InputStream inputStream = new ByteArrayInputStream(content)) {
-      try (PDDocument pdf = PDDocument.load(inputStream)) {
-        this.text = new PDFTextStripper().getText(pdf);
-        this.numberOfPages = pdf.getNumberOfPages();
-        this.author = pdf.getDocumentInformation().getAuthor();
-        this.creationDate = pdf.getDocumentInformation().getCreationDate();
-        this.creator = pdf.getDocumentInformation().getCreator();
-        this.keywords = pdf.getDocumentInformation().getKeywords();
-        this.producer = pdf.getDocumentInformation().getProducer();
-        this.subject = pdf.getDocumentInformation().getSubject();
-        this.title = pdf.getDocumentInformation().getTitle();
-        this.encrypted = pdf.isEncrypted();
-        
-        PDSignature signature = pdf.getLastSignatureDictionary();
-        this.signed = signature != null;
-        this.signerName = signature == null ? null : signature.getName();
-        this.signatureTime = signature == null ? null : signature.getSignDate();
-      }
-    }
-    catch (Exception e) {
-      throw new IllegalArgumentException("Invalid PDF file: " + name, e);
-    }
+    this(name, content, 1, Integer.MAX_VALUE);
   }
 
   private PDF(String name, byte[] content, int startPage, int endPage) {
