@@ -1,20 +1,21 @@
 == Changelog
 
-=== 1.6.0
+=== 1.6.0 (released 21.01.2021)
+* #4 add methods to search within given pages of PDF
 * added method doesNotContainText() and doesNotContainExactText
-* upgraded to pdfbox 2.0.21 and AssertJ 3.17.1
+* upgraded to pdfbox 2.0.22 and AssertJ 3.18.1
 
-=== 1.5.2
+=== 1.5.2 (released 15.07.2020)
 * upgraded to pdfbox 2.0.20 and JUnit 4.13
 
-=== 1.5.1
+=== 1.5.1 (released 27.11.2018)
 * upgraded to pdfbox 2.0.12
 
-=== 1.5.0
+=== 1.5.0 (released 04.06.2018)
 * upgraded to pdfbox 2.0.9
 * upgraded to Java 8
 
-=== 1.4
+=== 1.4 (released 02.04.2016)
 * upgraded to pdfbox 2.0.0
 * change license to less restrictive MIT
 * add fields PDF for checking signed PDFs: signed, signerName, signatureTime.
