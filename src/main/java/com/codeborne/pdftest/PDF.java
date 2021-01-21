@@ -62,6 +62,36 @@ public class PDF {
     }
   }
 
+  private PDF(String name, byte[] content, int startPage, int endPage) {
+    this.content = content;
+
+    try (InputStream inputStream = new ByteArrayInputStream(content)) {
+      try (PDDocument pdf = PDDocument.load(inputStream)) {
+        PDFTextStripper pdfTextStripper = new PDFTextStripper();
+        pdfTextStripper.setStartPage(startPage);
+        pdfTextStripper.setEndPage(endPage);
+        this.text = pdfTextStripper.getText(pdf);
+        this.numberOfPages = pdf.getNumberOfPages();
+        this.author = pdf.getDocumentInformation().getAuthor();
+        this.creationDate = pdf.getDocumentInformation().getCreationDate();
+        this.creator = pdf.getDocumentInformation().getCreator();
+        this.keywords = pdf.getDocumentInformation().getKeywords();
+        this.producer = pdf.getDocumentInformation().getProducer();
+        this.subject = pdf.getDocumentInformation().getSubject();
+        this.title = pdf.getDocumentInformation().getTitle();
+        this.encrypted = pdf.isEncrypted();
+
+        PDSignature signature = pdf.getLastSignatureDictionary();
+        this.signed = signature != null;
+        this.signerName = signature == null ? null : signature.getName();
+        this.signatureTime = signature == null ? null : signature.getSignDate();
+      }
+    }
+    catch (Exception e) {
+      throw new IllegalArgumentException("Invalid PDF file: " + name, e);
+    }
+  }
+
   public PDF(File pdfFile) throws IOException {
     this(pdfFile.getAbsolutePath(), readAllBytes(Paths.get(pdfFile.getAbsolutePath())));
   }
@@ -80,6 +110,26 @@ public class PDF {
 
   public PDF(InputStream inputStream) throws IOException {
     this(readBytes(inputStream));
+  }
+
+  public PDF(File pdfFile, int startPage, int endPage) throws IOException {
+    this(pdfFile.getAbsolutePath(), readAllBytes(Paths.get(pdfFile.getAbsolutePath())), startPage, endPage);
+  }
+
+  public PDF(URL url, int startPage, int endPage) throws IOException {
+    this(url.toString(), readBytes(url), startPage, endPage);
+  }
+
+  public PDF(URI uri, int startPage, int endPage) throws IOException {
+    this(uri.toURL(), startPage, endPage);
+  }
+
+  public PDF(byte[] content, int startPage, int endPage) {
+    this("", content, startPage, endPage);
+  }
+
+  public PDF(InputStream inputStream, int startPage, int endPage) throws IOException {
+    this(readBytes(inputStream), startPage, endPage);
   }
 
   private static byte[] readBytes(URL url) throws IOException {
