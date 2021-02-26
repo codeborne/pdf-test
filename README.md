@@ -7,7 +7,7 @@ PDF testing library
 
 Be sure that your code generates correct PDF!
 
-## How to use
+## How to use (Hamcrest)
 
 ```java
 import com.codeborne.pdftest.PDF;
@@ -23,6 +23,21 @@ public class PDFContainsTextTest {
 }
 ```
 
+## How to use (AssertJ)
+
+```java
+import com.codeborne.pdftest.PDF;
+import static com.codeborne.pdftest.assertj.Assertions.assertThat;
+
+public class PDFContainsTextTest {
+  @Test
+  public void canAssertThatPdfContainsText() {
+    PDF pdf = new PDF(new File("src/test/resources/50quickideas.pdf"));
+    assertThat(pdf).containsExactText("50 Quick Ideas to Improve your User Stories");
+  }
+}
+```
+
 
 ## How to start
 
@@ -32,14 +47,14 @@ If you use **Maven**, add the following dependency to pom.xml:
   <dependency>
     <groupId>com.codeborne</groupId>
     <artifactId>pdf-test</artifactId>
-    <version>1.5.2</version>
+    <version>1.6.1</version>
   </dependency>
 ```
 
 If you use **Gradle**, add the following dependency to build.gradle:
 
 ```groovy
-  testCompile 'com.codeborne:pdf-test:1.5.2'
+  testCompile 'com.codeborne:pdf-test:1.6.1'
 ```
 
 ## How to contribute
