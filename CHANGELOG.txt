@@ -1,5 +1,8 @@
 == Changelog
 
+=== 1.6.1 (released 26.02.2021)
+* added AssertJ matchers
+
 === 1.6.0 (released 21.01.2021)
 * #4 add methods to search within given pages of PDF
 * added method doesNotContainText() and doesNotContainExactText
