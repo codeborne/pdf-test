@@ -66,4 +66,16 @@ public class ContainsTextTest {
       assertThat(fiftyIdeasPdf).containsText("50", "Quick", "Applications");
     }).isInstanceOf(AssertionError.class);
   }
+
+  @Test
+  public void shouldNotContainMultipleTexts() {
+    assertThat(fiftyIdeasPdf).doesNotContainText("42", "Slow", "Applications");
+  }
+
+  @Test
+  public void shouldFailWhenNotAllTextsAreMissing() {
+    assertThatThrownBy(() -> {
+      assertThat(fiftyIdeasPdf).doesNotContainText("42", "Slow", "Ideas");
+    }).isInstanceOf(AssertionError.class);
+  }
 }
