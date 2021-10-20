@@ -3,16 +3,21 @@ package com.codeborne.pdftest.matchers;
 import com.codeborne.pdftest.PDF;
 import org.hamcrest.Description;
 
-public class ContainsText extends PDFMatcher {
-  private final String substring;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
-  public ContainsText(String substring) {
-    this.substring = substring;
+public class ContainsText extends PDFMatcher {
+  private final String[] strings;
+
+  public ContainsText(String... strings) {
+    this.strings = strings;
   }
 
   @Override
   protected boolean matchesSafely(PDF item) {
-    return reduceSpaces(item.text).contains(reduceSpaces(substring));
+    String reducedPdfText = reduceSpaces(item.text);
+    return Arrays.stream(strings).allMatch(str -> reducedPdfText.contains(reduceSpaces(str)));
   }
 
   @Override
@@ -22,6 +27,7 @@ public class ContainsText extends PDFMatcher {
 
   @Override
   public void describeTo(Description description) {
-    description.appendText("a PDF containing ").appendValue(reduceSpaces(substring));
+    List<String> reducedStrings = Arrays.stream(strings).map(this::reduceSpaces).collect(Collectors.toList());
+    description.appendText("a PDF containing ").appendValue(reducedStrings);
   }
 }
