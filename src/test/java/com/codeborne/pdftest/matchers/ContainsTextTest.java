@@ -53,4 +53,16 @@ public class ContainsTextTest {
           is("\nExpected: a PDF containing \"Goodbye word\"\n     but: was \"Hello World\""));
     }
   }
+
+  @Test
+  public void pdfShouldContainMultipleTexts() throws IOException {
+    PDF pdf = new PDF(getClass().getClassLoader().getResource("50quickideas.pdf"));
+    assertThat(pdf, containsText("50", "Quick", "Ideas"));
+  }
+
+  @Test(expected = AssertionError.class)
+  public void shouldFailWhenOneTextIsMissing() throws IOException {
+    PDF pdf = new PDF(getClass().getClassLoader().getResource("50quickideas.pdf"));
+    assertThat(pdf, containsText("50", "Quick", "Applications"));
+  }
 }
