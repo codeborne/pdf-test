@@ -31,12 +31,6 @@ public class DoesNotContainText extends PDFMatcher {
   @Override
   public void describeTo(Description description) {
     description.appendText("a PDF not containing ");
-    if (texts.length > 0) {
-      List<String> reducedStrings = Arrays.stream(texts).map(this::reduceSpaces).collect(Collectors.toList());
-      reducedStrings.add(0, reduceSpaces(text));
-      description.appendValueList("", ", ", "", reducedStrings);
-    } else {
-      description.appendValue(reduceSpaces(text));
-    }
+    buildErrorMessage(description, text, texts);
   }
 }

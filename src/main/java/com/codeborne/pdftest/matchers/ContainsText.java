@@ -4,8 +4,6 @@ import com.codeborne.pdftest.PDF;
 import org.hamcrest.Description;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class ContainsText extends PDFMatcher {
   private final String text;
@@ -31,12 +29,9 @@ public class ContainsText extends PDFMatcher {
   @Override
   public void describeTo(Description description) {
     description.appendText("a PDF containing ");
-    if (texts.length > 0) {
-      List<String> reducedStrings = Arrays.stream(texts).map(this::reduceSpaces).collect(Collectors.toList());
-      reducedStrings.add(0, reduceSpaces(text));
-      description.appendValueList("", ", ", "", reducedStrings);
-    } else {
-      description.appendValue(reduceSpaces(text));
-    }
+    buildErrorMessage(description, text, texts);
   }
+
+
 }
+
