@@ -13,12 +13,14 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class ContainsTextTest {
 
   private PDF fiftyIdeasPdf;
+  private PDF minimalPdf;
 
   @Before
   public void setUp() throws Exception {
     fiftyIdeasPdf = new PDF(
             Objects.requireNonNull(getClass().getClassLoader().getResource("50quickideas.pdf"))
     );
+    minimalPdf = new PDF(Objects.requireNonNull(getClass().getClassLoader().getResource("minimal.pdf")));
   }
 
   @Test
@@ -46,13 +48,21 @@ public class ContainsTextTest {
   }
 
   @Test
-  public void errorDescription() throws IOException {
-    PDF pdf = new PDF(getClass().getClassLoader().getResource("minimal.pdf"));
+  public void errorDescriptionForSingleParameter() {
     assertThatThrownBy(() -> {
-      assertThat(pdf).containsText("Goodbye word");
+      assertThat(minimalPdf).containsText("Goodbye word");
     })
         .isInstanceOf(AssertionError.class)
-        .hasMessage("\nExpected: a PDF containing <[Goodbye word]>\n     but: was \"Hello World\"");
+        .hasMessage("\nExpected: a PDF containing \"Goodbye word\"\n     but: was \"Hello World\"");
+  }
+
+  @Test
+  public void errorDescriptionForMultipleParameters() {
+    assertThatThrownBy(() -> {
+      assertThat(minimalPdf).containsText("Goodbye word", "Privet");
+    })
+            .isInstanceOf(AssertionError.class)
+            .hasMessage("\nExpected: a PDF containing \"Goodbye word\", \"Privet\"\n     but: was \"Hello World\"");
   }
 
   @Test

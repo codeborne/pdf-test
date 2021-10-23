@@ -127,8 +127,8 @@ public class PDF {
     return result.toByteArray();
   }
 
-  public static Matcher<PDF> containsText(String... texts) {
-    return new ContainsText(texts);
+  public static Matcher<PDF> containsText(String text, String... texts) {
+    return new ContainsText(text, texts);
   }
   public static Matcher<PDF> doesNotContainText(String... texts) {
     return new DoesNotContainText(texts);
