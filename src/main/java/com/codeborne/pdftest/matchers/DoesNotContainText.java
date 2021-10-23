@@ -8,16 +8,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DoesNotContainText extends PDFMatcher {
-  private final String[] strings;
+  private final String text;
+  private final String[] texts;
 
-  public DoesNotContainText(String... strings) {
-    this.strings = strings;
+  public DoesNotContainText(String text, String... texts) {
+    this.text = text;
+    this.texts = texts;
   }
 
   @Override
   protected boolean matchesSafely(PDF item) {
-    String pdfReducedText = reduceSpaces(item.text);
-    return Arrays.stream(strings).noneMatch(str -> pdfReducedText.contains(reduceSpaces(str)));
+    String reducedPdfText = reduceSpaces(item.text);
+    return !reducedPdfText.contains(reduceSpaces(text)) &&
+            Arrays.stream(texts).noneMatch(str -> reducedPdfText.contains(reduceSpaces(str)));
   }
 
   @Override
@@ -27,7 +30,13 @@ public class DoesNotContainText extends PDFMatcher {
 
   @Override
   public void describeTo(Description description) {
-    List<String> reducedStrings = Arrays.stream(strings).map(this::reduceSpaces).collect(Collectors.toList());
-    description.appendText("a PDF not containing ").appendValue(reducedStrings);
+    description.appendText("a PDF not containing ");
+    if (texts.length > 0) {
+      List<String> reducedStrings = Arrays.stream(texts).map(this::reduceSpaces).collect(Collectors.toList());
+      reducedStrings.add(0, reduceSpaces(text));
+      description.appendValueList("", ", ", "", reducedStrings);
+    } else {
+      description.appendValue(reduceSpaces(text));
+    }
   }
 }
