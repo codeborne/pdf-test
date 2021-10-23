@@ -1,6 +1,7 @@
 package com.codeborne.pdftest.matchers;
 
 import com.codeborne.pdftest.PDF;
+import com.codeborne.pdftest.assertj.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,6 +10,7 @@ import java.util.Objects;
 
 import static com.codeborne.pdftest.PDF.containsText;
 import static com.codeborne.pdftest.PDF.doesNotContainText;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -17,12 +19,14 @@ import static org.junit.Assert.fail;
 public class ContainsTextTest {
 
   private PDF fiftyIdeasPdf;
+  private PDF minimalPdf;
 
   @Before
   public void setUp() throws Exception {
     fiftyIdeasPdf = new PDF(
             Objects.requireNonNull(getClass().getClassLoader().getResource("50quickideas.pdf"))
     );
+    minimalPdf = new PDF(Objects.requireNonNull(getClass().getClassLoader().getResource("minimal.pdf")));
   }
 
   @Test
@@ -51,16 +55,22 @@ public class ContainsTextTest {
   }
 
   @Test
-  public void errorDescription() throws IOException {
-    PDF pdf = new PDF(getClass().getClassLoader().getResource("minimal.pdf"));
+  public void errorDescriptionForSingleParameter() {
     try {
-      assertThat(pdf, containsText("Goodbye word"));
+      assertThat(minimalPdf, containsText("Goodbye word"));
       fail("expected AssertionError");
     }
     catch (AssertionError expected) {
       assertThat(expected.getMessage(),
-          is("\nExpected: a PDF containing <[Goodbye word]>\n     but: was \"Hello World\""));
+          is("\nExpected: a PDF containing \"Goodbye word\"\n     but: was \"Hello World\""));
     }
+  }
+
+  @Test
+  public void errorDescriptionForMultipleParameters() {
+    assertThatThrownBy(() -> Assertions.assertThat(minimalPdf).containsText("Goodbye word", "Privet"))
+            .isInstanceOf(AssertionError.class)
+            .hasMessage("\nExpected: a PDF containing \"Goodbye word\", \"Privet\"\n     but: was \"Hello World\"");
   }
 
   @Test
