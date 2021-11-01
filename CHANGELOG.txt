@@ -1,5 +1,8 @@
 == Changelog
 
+=== 1.7.0 (released 01.11.2021)
+* add support for multiple texts  --  thanks to Vitali Plagov for PR #10
+
 === 1.6.1 (released 26.02.2021)
 * added AssertJ matchers
 
