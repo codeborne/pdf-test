@@ -9,92 +9,16 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'maven'
 apply plugin: 'jacoco'
 apply plugin: 'com.github.kt3k.coveralls'
 
-group='com.codeborne'
+group = 'com.codeborne'
 archivesBaseName = 'pdf-test'
-version='1.6.1'
-
-[compileJava, compileTestJava]*.options.collect {options -> options.encoding = 'UTF-8'}
-[compileJava, compileTestJava]*.options.collect {options -> options.debug = true}
-compileJava.options.debugOptions.debugLevel = "source,lines,vars"
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+version = '1.7.0'
 
 defaultTasks 'test', 'install'
 
-dependencies {
-  implementation group: 'org.apache.pdfbox', name: 'pdfbox', version: '2.0.24', transitive: true
-  implementation group: 'org.hamcrest', name: 'hamcrest-core', version: '1.3', transitive: false
-  testImplementation group: 'junit', name: 'junit', version: '4.13.2', transitive: false
-  testImplementation group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3', transitive: false
-  implementation group: 'org.assertj', name: 'assertj-core', version: '3.21.0', transitive: false
-}
-
-repositories{
-  mavenCentral()
-}
-
-task libsProd(type: Sync) {
-  from configurations.compileClasspath
-  into "$buildDir/lib-prod"
-}
-
-task libsTest(type: Sync) {
-  from configurations.testRuntimeClasspath - configurations.compileClasspath
-  into "$buildDir/lib-test"
-}
-
-compileJava.dependsOn libsProd, libsTest
-
-test {
-  include 'com/codeborne/pdftest/**/*'
-  systemProperties['file.encoding'] = 'UTF-8'
-  testLogging.showStandardStreams = true
-  jacoco {
-    enabled = true
-  }
-}
-
-jar {
-  manifest {
-    attributes(
-      "Implementation-Title": project.group + '.' + project.name,
-      "Implementation-Version": version,
-      "Implementation-Vendor": "Codeborne")
-  }
-}
-
-task sourcesJar(type: Jar, dependsOn:classes) {
-  classifier = 'sources'
-  from sourceSets.main.allSource
-}
-
-javadoc {
-  failOnError=false
-}
-
-task javadocJar(type: Jar, dependsOn:javadoc) {
-  classifier = 'javadoc'
-  from javadoc.destinationDir
-}
-
-artifacts {
-  archives jar
-  archives sourcesJar
-  archives javadocJar
-}
-
-jacocoTestReport {
-  reports {
-    xml.enabled true
-    html.enabled true
-  }
-}
-
-tasks.coveralls {
-  onlyIf { System.env.'CI' }
-}
+apply from: file('gradle/compilation.gradle')
+apply from: file('gradle/dependencies.gradle')
+apply from: file('gradle/tests.gradle')
+apply from: file('gradle/publish.gradle')

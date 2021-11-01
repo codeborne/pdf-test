@@ -1,0 +1,19 @@
+test {
+  include 'com/codeborne/pdftest/**/*'
+  systemProperties['file.encoding'] = 'UTF-8'
+  testLogging.showStandardStreams = true
+  jacoco {
+    enabled = true
+  }
+}
+
+jacocoTestReport {
+  reports {
+    xml.enabled true
+    html.enabled true
+  }
+}
+
+tasks.coveralls {
+  onlyIf { System.env.'CI' }
+}
