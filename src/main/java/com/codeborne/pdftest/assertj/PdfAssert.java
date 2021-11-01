@@ -15,15 +15,15 @@ public class PdfAssert extends AbstractAssert<PdfAssert, PDF> {
     super(actual, PdfAssert.class);
   }
 
-  public PdfAssert containsText(String substring) {
+  public PdfAssert containsText(String text, String... texts) {
     isNotNull();
-    assertThat(actual, new ContainsText(substring));
+    assertThat(actual, new ContainsText(text, texts));
     return this;
   }
 
-  public PdfAssert doesNotContainText(String substring) {
+  public PdfAssert doesNotContainText(String text, String... texts) {
     isNotNull();
-    assertThat(actual, new DoesNotContainText(substring));
+    assertThat(actual, new DoesNotContainText(text, texts));
     return this;
   }
 

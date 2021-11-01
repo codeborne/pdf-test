@@ -127,11 +127,11 @@ public class PDF {
     return result.toByteArray();
   }
 
-  public static Matcher<PDF> containsText(String text) {
-    return new ContainsText(text);
+  public static Matcher<PDF> containsText(String text, String... texts) {
+    return new ContainsText(text, texts);
   }
-  public static Matcher<PDF> doesNotContainText(String text) {
-    return new DoesNotContainText(text);
+  public static Matcher<PDF> doesNotContainText(String text, String... texts) {
+    return new DoesNotContainText(text, texts);
   }
   public static Matcher<PDF> containsExactText(String text) {
     return new ContainsExactText(text);
