@@ -1,6 +1,5 @@
-[![Build Status](https://travis-ci.org/codeborne/pdf-test.svg?branch=master)](https://travis-ci.org/codeborne/pdf-test)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.codeborne/pdf-test/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.codeborne/pdf-test)
-[![Coverage Status](https://coveralls.io/repos/github/codeborne/pdf-test/badge.svg?branch=master)](https://coveralls.io/github/codeborne/pdf-test?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/codeborne/pdf-test/badge.svg?branch=main)](https://coveralls.io/github/codeborne/pdf-test?branch=main)
 
 # PDF Test
 PDF testing library
