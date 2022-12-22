@@ -67,11 +67,11 @@ Any contribution is important!
 
 # Thanks
 
-Many thanks to these incredible tools that help us creating open-source software:
+Many thanks to these incredible tools that help us to create open-source software:
 
-![Intellij IDEA](http://store.softline.ru/uploads/resizer/allsoft_2231598/2231598_Scale_120x120.png)
+![Intellij IDEA](https://cloud.google.com/tools/images/icon_IntelliJIDEA.png)
 
-![YourKit Java profiler](http://selenide.org/images/yourkit.png)
+![YourKit Java profiler](https://selenide.org/images/yourkit.png)
 
 # License
 pdf-test is open-source project and distributed under [MIT](http://choosealicense.com/licenses/mit/) license
