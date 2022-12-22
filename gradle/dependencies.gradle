@@ -9,12 +9,12 @@ repositories {
   mavenCentral()
 }
 
-task libsProd(type: Sync) {
+tasks.register('libsProd', Sync) {
   from configurations.compileClasspath
   into "$buildDir/lib-prod"
 }
 
-task libsTest(type: Sync) {
+tasks.register('libsTest', Sync) {
   from configurations.testRuntimeClasspath - configurations.compileClasspath
   into "$buildDir/lib-test"
 }
