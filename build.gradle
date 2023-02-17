@@ -6,7 +6,7 @@ buildscript {
 }
 
 plugins {
-  id 'java'
+  id 'java-library'
   id 'jacoco'
   id 'com.github.kt3k.coveralls' version '2.12.0'
 }
