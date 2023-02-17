@@ -5,6 +5,7 @@ import com.codeborne.pdftest.matchers.ContainsText;
 import com.codeborne.pdftest.matchers.ContainsTextCaseInsensitive;
 import com.codeborne.pdftest.matchers.DoesNotContainExactText;
 import com.codeborne.pdftest.matchers.DoesNotContainText;
+import com.codeborne.pdftest.matchers.MatchesText;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.interactive.digitalsignature.PDSignature;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -15,6 +16,7 @@ import java.net.URI;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.Calendar;
+import java.util.regex.Pattern;
 
 import static java.nio.file.Files.readAllBytes;
 
@@ -142,4 +144,12 @@ public class PDF {
   public static Matcher<PDF> containsTextCaseInsensitive(String text) {
     return new ContainsTextCaseInsensitive(text);
   }
+
+  public static Matcher<PDF> matchesText(String regex) {
+    return matchesText(Pattern.compile(regex));
+  }
+  public static Matcher<PDF> matchesText(Pattern regex) {
+    return new MatchesText(regex);
+  }
+
 }

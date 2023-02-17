@@ -4,10 +4,8 @@ import com.codeborne.pdftest.PDF;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.util.Objects;
-
 import static com.codeborne.pdftest.assertj.Assertions.assertThat;
+import static java.util.Objects.requireNonNull;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ContainsTextTest {
@@ -17,10 +15,8 @@ public class ContainsTextTest {
 
   @Before
   public void setUp() throws Exception {
-    fiftyIdeasPdf = new PDF(
-            Objects.requireNonNull(getClass().getClassLoader().getResource("50quickideas.pdf"))
-    );
-    minimalPdf = new PDF(Objects.requireNonNull(getClass().getClassLoader().getResource("minimal.pdf")));
+    fiftyIdeasPdf = new PDF(requireNonNull(getClass().getClassLoader().getResource("50quickideas.pdf")));
+    minimalPdf = new PDF(requireNonNull(getClass().getClassLoader().getResource("minimal.pdf")));
   }
 
   @Test

@@ -6,7 +6,10 @@ import com.codeborne.pdftest.matchers.ContainsText;
 import com.codeborne.pdftest.matchers.ContainsTextCaseInsensitive;
 import com.codeborne.pdftest.matchers.DoesNotContainExactText;
 import com.codeborne.pdftest.matchers.DoesNotContainText;
+import com.codeborne.pdftest.matchers.MatchesText;
 import org.assertj.core.api.AbstractAssert;
+
+import java.util.regex.Pattern;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -44,4 +47,15 @@ public class PdfAssert extends AbstractAssert<PdfAssert, PDF> {
     assertThat(actual, new ContainsTextCaseInsensitive(substring));
     return this;
   }
+
+  public PdfAssert matchesText(String regex) {
+    return matchesText(Pattern.compile(regex));
+  }
+
+  public PdfAssert matchesText(Pattern regex) {
+    isNotNull();
+    assertThat(actual, new MatchesText(regex));
+    return this;
+  }
+  
 }

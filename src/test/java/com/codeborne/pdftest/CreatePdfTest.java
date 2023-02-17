@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static com.codeborne.pdftest.PDF.containsText;
+import static com.codeborne.pdftest.PDF.matchesText;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CreatePdfTest {

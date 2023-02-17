@@ -46,14 +46,15 @@ If you use **Maven**, add the following dependency to pom.xml:
   <dependency>
     <groupId>com.codeborne</groupId>
     <artifactId>pdf-test</artifactId>
-    <version>1.8.0</version>
+    <version>1.8.1</version>
+    <scope>test</scope>
   </dependency>
 ```
 
 If you use **Gradle**, add the following dependency to build.gradle:
 
 ```groovy
-  testCompile 'com.codeborne:pdf-test:1.8.0'
+  testImplementation 'com.codeborne:pdf-test:1.8.1'
 ```
 
 ## How to contribute
