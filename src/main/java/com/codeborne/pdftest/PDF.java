@@ -6,6 +6,9 @@ import com.codeborne.pdftest.matchers.ContainsTextCaseInsensitive;
 import com.codeborne.pdftest.matchers.DoesNotContainExactText;
 import com.codeborne.pdftest.matchers.DoesNotContainText;
 import com.codeborne.pdftest.matchers.MatchesText;
+import org.apache.pdfbox.io.RandomAccessRead;
+import org.apache.pdfbox.io.RandomAccessReadBuffer;
+import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.interactive.digitalsignature.PDSignature;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -22,7 +25,6 @@ import static java.nio.file.Files.readAllBytes;
 
 public class PDF {
   public final byte[] content;
-  
   public final String text;
   public final int numberOfPages;
   public final String author;
@@ -44,8 +46,8 @@ public class PDF {
   private PDF(String name, byte[] content, int startPage, int endPage) {
     this.content = content;
 
-    try (InputStream inputStream = new ByteArrayInputStream(content)) {
-      try (PDDocument pdf = PDDocument.load(inputStream)) {
+    try (RandomAccessRead buffer = new RandomAccessReadBuffer(content)) {
+      try (PDDocument pdf = new PDFParser(buffer).parse()) {
         PDFTextStripper pdfTextStripper = new PDFTextStripper();
         pdfTextStripper.setStartPage(startPage);
         pdfTextStripper.setEndPage(endPage);
@@ -74,7 +76,7 @@ public class PDF {
   public PDF(File pdfFile) throws IOException {
     this(pdfFile.getAbsolutePath(), readAllBytes(Paths.get(pdfFile.getAbsolutePath())));
   }
-  
+
   public PDF(URL url) throws IOException {
     this(url.toString(), readBytes(url));
   }
@@ -82,7 +84,7 @@ public class PDF {
   public PDF(URI uri) throws IOException {
     this(uri.toURL());
   }
-  
+
   public PDF(byte[] content) {
     this("", content);
   }
@@ -151,5 +153,4 @@ public class PDF {
   public static Matcher<PDF> matchesText(Pattern regex) {
     return new MatchesText(regex);
   }
-
 }
