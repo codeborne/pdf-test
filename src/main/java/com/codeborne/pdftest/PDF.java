@@ -6,6 +6,8 @@ import com.codeborne.pdftest.matchers.ContainsTextCaseInsensitive;
 import com.codeborne.pdftest.matchers.DoesNotContainExactText;
 import com.codeborne.pdftest.matchers.DoesNotContainText;
 import com.codeborne.pdftest.matchers.MatchesText;
+import java.net.SocketTimeoutException;
+import java.net.URLConnection;
 import org.apache.pdfbox.io.RandomAccessRead;
 import org.apache.pdfbox.io.RandomAccessReadBuffer;
 import org.apache.pdfbox.pdfparser.PDFParser;
@@ -38,6 +40,8 @@ public class PDF {
   public final boolean signed;
   public final String signerName;
   public final Calendar signatureTime;
+  private static final int URL_CONNECT_TIMEOUT = 10_000;
+  private static final int URL_READ_TIMEOUT = 10_000;
 
   private PDF(String name, byte[] content) {
     this(name, content, 1, Integer.MAX_VALUE);
@@ -114,8 +118,14 @@ public class PDF {
   }
 
   private static byte[] readBytes(URL url) throws IOException {
-    try (InputStream inputStream = url.openStream()) {
+    URLConnection connection = url.openConnection();
+    connection.setConnectTimeout(URL_CONNECT_TIMEOUT);
+    connection.setReadTimeout(URL_READ_TIMEOUT);
+
+    try (InputStream inputStream = connection.getInputStream()) {
       return readBytes(inputStream);
+    } catch (SocketTimeoutException e) {
+      throw new IOException("Timeout while connecting to or reading from the URL: " + url, e);
     }
   }
 
