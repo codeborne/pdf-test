@@ -1,7 +1,7 @@
 dependencies {
   implementation group: 'org.apache.pdfbox', name: 'pdfbox', version: '3.0.2', transitive: true
   implementation group: 'org.hamcrest', name: 'hamcrest', version: '2.2', transitive: false
-  implementation group: 'org.assertj', name: 'assertj-core', version: '3.26.0', transitive: false
+  implementation group: 'org.assertj', name: 'assertj-core', version: '3.26.0'
   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.3'
   testImplementation 'org.junit.vintage:junit-vintage-engine:5.10.3'
 }
