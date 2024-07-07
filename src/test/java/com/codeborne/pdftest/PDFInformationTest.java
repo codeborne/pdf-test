@@ -1,6 +1,6 @@
 package com.codeborne.pdftest;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -10,15 +10,15 @@ import java.util.TimeZone;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.nullValue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class PDFInformationTest {
   @Test
   public void canGetInformationFromPdf() throws IOException, ParseException {
     TimeZone.setDefault(TimeZone.getTimeZone("Europe/Tallinn"));
-    
+
     PDF pdf = new PDF(getClass().getClassLoader().getResource("50quickideas.pdf"));
     assertThat(pdf.author, equalTo("Gojko Adzic"));
     assertThat(pdf.creationDate.getTime(),

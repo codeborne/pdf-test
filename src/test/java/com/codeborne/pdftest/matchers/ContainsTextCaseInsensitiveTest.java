@@ -1,14 +1,14 @@
 package com.codeborne.pdftest.matchers;
 
 import com.codeborne.pdftest.PDF;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
 import static com.codeborne.pdftest.PDF.containsTextCaseInsensitive;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class ContainsTextCaseInsensitiveTest {
   @Test

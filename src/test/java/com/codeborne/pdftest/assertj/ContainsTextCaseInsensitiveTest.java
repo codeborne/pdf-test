@@ -1,13 +1,12 @@
 package com.codeborne.pdftest.assertj;
 
 import com.codeborne.pdftest.PDF;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
 import static com.codeborne.pdftest.assertj.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 
 public class ContainsTextCaseInsensitiveTest {
   @Test

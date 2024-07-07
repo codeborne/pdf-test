@@ -1,8 +1,8 @@
 package com.codeborne.pdftest.assertj;
 
 import com.codeborne.pdftest.PDF;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static com.codeborne.pdftest.assertj.Assertions.assertThat;
 import static java.util.Objects.requireNonNull;
@@ -13,7 +13,7 @@ public class ContainsTextTest {
   private PDF fiftyIdeasPdf;
   private PDF minimalPdf;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     fiftyIdeasPdf = new PDF(requireNonNull(getClass().getClassLoader().getResource("50quickideas.pdf")));
     minimalPdf = new PDF(requireNonNull(getClass().getClassLoader().getResource("minimal.pdf")));

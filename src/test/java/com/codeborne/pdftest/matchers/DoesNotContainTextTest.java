@@ -1,23 +1,23 @@
 package com.codeborne.pdftest.matchers;
 
 import com.codeborne.pdftest.PDF;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.Objects;
 
 import static com.codeborne.pdftest.PDF.doesNotContainText;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class DoesNotContainTextTest {
 
   private PDF fiftyIdeasPdf;
   private PDF minimalPdf;
 
-  @Before
+  @BeforeEach
   public void setUp() throws Exception {
     fiftyIdeasPdf = new PDF(
             Objects.requireNonNull(getClass().getClassLoader().getResource("50quickideas.pdf"))
@@ -65,8 +65,11 @@ public class DoesNotContainTextTest {
     assertThat(fiftyIdeasPdf, doesNotContainText("42", "Slow", "Applications"));
   }
 
-  @Test(expected = AssertionError.class)
+  @Test
   public void shouldFailWhenNotAllTextsAreMissing() {
-    assertThat(fiftyIdeasPdf, doesNotContainText("42", "Slow", "Ideas"));
+    assertThatThrownBy(() -> assertThat(fiftyIdeasPdf, doesNotContainText("42", "Slow", "Ideas")))
+      .isInstanceOf(AssertionError.class)
+      .hasMessageContaining("Expected: a PDF not containing \"42\", \"Slow\", \"Ideas\"")
+      .hasMessageContaining("but: was \"50 Quick Ideas");
   }
 }

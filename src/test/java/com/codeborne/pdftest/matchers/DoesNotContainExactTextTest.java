@@ -1,14 +1,14 @@
 package com.codeborne.pdftest.matchers;
 
 import com.codeborne.pdftest.PDF;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
 import static com.codeborne.pdftest.PDF.doesNotContainExactText;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class DoesNotContainExactTextTest {
   @Test
@@ -33,7 +33,7 @@ public class DoesNotContainExactTextTest {
       fail("expected AssertionError");
     }
     catch (AssertionError expected) {
-      assertThat(expected.getMessage(), 
+      assertThat(expected.getMessage(),
           is("\nExpected: a PDF not containing exactly \"Hello World\"\n     but: was \"Hello World\n\""));
     }
   }
