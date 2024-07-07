@@ -1,6 +1,6 @@
 package com.codeborne.pdftest;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +12,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static com.codeborne.pdftest.PDF.containsText;
-import static com.codeborne.pdftest.PDF.matchesText;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class CreatePdfTest {
@@ -21,7 +20,7 @@ public class CreatePdfTest {
     File file = new File("src/test/resources/50quickideas.pdf");
     assertThat(new PDF(file), containsText("50 Quick Ideas"));
   }
-  
+
   @Test
   public void fromUrl() throws IOException {
     URL url = getClass().getClassLoader().getResource("50quickideas.pdf");

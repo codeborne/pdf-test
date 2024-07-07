@@ -1,4 +1,5 @@
 test {
+    useJUnitPlatform()
     include 'com/codeborne/pdftest/**/*'
     systemProperties['file.encoding'] = 'UTF-8'
     testLogging.showStandardStreams = true
