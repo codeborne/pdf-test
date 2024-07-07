@@ -1,11 +1,14 @@
 == Changelog
 
-=== 1.9.0 (released 07.07.2024)
-* Add soft assertions for AssertJ
-* Rewrite tests from JUnit4 to JUnit5
+=== 1.9.0 (released 08.07.2024)
+* Add soft assertions for AssertJ (#37)
+* #8 Set timeout when reading PDF from URL - thanks to Pavlo Glushchenko (#28)
+* Rewrite tests from JUnit4 to JUnit5 (#38)
+* Bump org.apache.pdfbox.pdfbox from 2.0.27 to 3.0.0 (#27)
 
 === 1.8.1 (released 17.02.2023)
 * Add matcher `matchesText(regex)`
+* Bump update from JUnit4 to JUnit5 - thanks to Vladimir Glinskikh (#13)
 
 === 1.8.0 (released 22.12.2022)
 * pdfbox from 2.0.24 to 2.0.27
