@@ -34,6 +34,17 @@ public class PDFContainsTextTest {
     PDF pdf = new PDF(new File("src/test/resources/50quickideas.pdf"));
     assertThat(pdf).containsExactText("50 Quick Ideas to Improve your User Stories");
   }
+
+  @Test
+  public void canUseSoftAssertions() {
+    PDF pdf = new PDF(getClass().getClassLoader().getResource("minimal.pdf"));
+
+    PdfSoftAssertions softly = new PdfSoftAssertions();
+    softly.assertThat(pdf).containsExactText("one");
+    softly.assertThat(pdf).containsExactText("two");
+    softly.assertThat(pdf).containsExactText("three");
+    softly.assertAll();
+  }
 }
 ```
 
@@ -46,7 +57,7 @@ If you use **Maven**, add the following dependency to pom.xml:
   <dependency>
     <groupId>com.codeborne</groupId>
     <artifactId>pdf-test</artifactId>
-    <version>1.8.1</version>
+    <version>1.9.0</version>
     <scope>test</scope>
   </dependency>
 ```
@@ -54,7 +65,7 @@ If you use **Maven**, add the following dependency to pom.xml:
 If you use **Gradle**, add the following dependency to build.gradle:
 
 ```groovy
-  testImplementation 'com.codeborne:pdf-test:1.8.1'
+  testImplementation 'com.codeborne:pdf-test:1.9.0'
 ```
 
 ## How to contribute
