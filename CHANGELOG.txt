@@ -1,5 +1,11 @@
 == Changelog
 
+=== 1.9.1 (released 26.09.2024)
+* Bump pdfbox from 3.0.2 to 3.0.3 (#41)
+* Bump junit from 5.10.3 to 5.11.1 (#43) (#45)
+* Bump assertj from 3.26.0 to 3.26.3 (#39)
+* Bump hamcrest from 2.2 to 3.0 (#40)
+
 === 1.9.0 (released 08.07.2024)
 * Add soft assertions for AssertJ (#37)
 * #8 Set timeout when reading PDF from URL - thanks to Pavlo Glushchenko (#28)
