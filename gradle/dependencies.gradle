@@ -1,5 +1,5 @@
 dependencies {
-  implementation group: 'org.apache.pdfbox', name: 'pdfbox', version: '3.0.3', transitive: true
+  implementation group: 'org.apache.pdfbox', name: 'pdfbox', version: '3.0.4', transitive: true
   implementation group: 'org.hamcrest', name: 'hamcrest', version: '3.0', transitive: false
   implementation group: 'org.assertj', name: 'assertj-core', version: '3.27.3'
   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.4'
