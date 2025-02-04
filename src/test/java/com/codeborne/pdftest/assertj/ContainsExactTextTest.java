@@ -34,10 +34,17 @@ public class ContainsExactTextTest {
   public void errorDescription() throws IOException {
     PDF pdf = new PDF(getClass().getClassLoader().getResource("minimal.pdf"));
 
-    assertThatThrownBy(() -> {
-      assertThat(pdf).containsExactText("Goodbye word");
-    })
-        .isInstanceOf(AssertionError.class)
-        .hasMessage("\nExpected: a PDF containing \"Goodbye word\"\n     but: was \"Hello World\n\"");
+    assertThatThrownBy(() -> assertThat(pdf).containsExactText("Goodbye World"))
+      .isInstanceOf(AssertionError.class)
+      .hasMessage(String.format("%nExpecting actual:%n  \"Hello World%n\"%nto contain:%n  \"Goodbye World\" "));
+  }
+
+  @Test
+  public void errorDescription_as() throws IOException {
+    PDF pdf = new PDF(getClass().getClassLoader().getResource("minimal.pdf"));
+
+    assertThatThrownBy(() -> assertThat(pdf).as("The World has changed").containsExactText("Goodbye World"))
+      .isInstanceOf(AssertionError.class)
+      .hasMessage(String.format("[The World has changed] %nExpecting actual:%n  \"Hello World%n\"%nto contain:%n  \"Goodbye World\" "));
   }
 }

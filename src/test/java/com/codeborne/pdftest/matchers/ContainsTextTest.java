@@ -67,9 +67,13 @@ public class ContainsTextTest {
 
   @Test
   public void errorDescriptionForMultipleParameters() {
-    assertThatThrownBy(() -> Assertions.assertThat(minimalPdf).containsText("Goodbye word", "Privet"))
+    assertThatThrownBy(() -> Assertions.assertThat(minimalPdf).containsText("Goodbye word", "Privet", "Hello World"))
             .isInstanceOf(AssertionError.class)
-            .hasMessage("\nExpected: a PDF containing \"Goodbye word\", \"Privet\"\n     but: was \"Hello World\"");
+            .hasMessage(String.format("%nExpecting actual:%n" +
+                                      "  \"Hello World\"%nto contain:%n" +
+                                      "  [\"Goodbye word\", \"Privet\", \"Hello World\"]%n" +
+                                      "but could not find:%n" +
+                                      "  [\"Goodbye word\", \"Privet\"]%n "));
   }
 
   @Test

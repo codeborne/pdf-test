@@ -25,10 +25,18 @@ public class SoftAssertionsTest {
       .hasMessageContaining("Multiple Failures (4 failures)")
       .isInstanceOfSatisfying(MultipleFailuresError.class, e -> {
         assertThat(e.getFailures()).hasSize(4);
-        assertThat(e.getFailures().get(0)).hasMessageContaining("Expected: a PDF containing \"one\"");
-        assertThat(e.getFailures().get(1)).hasMessageContaining("Expected: a PDF containing \"two\"");
-        assertThat(e.getFailures().get(2)).hasMessageContaining("Expected: a PDF containing \"three\"");
-        assertThat(e.getFailures().get(3)).hasMessageContaining("Expected: a PDF containing \"four\"");
+        assertThat(e.getFailures().get(0)).hasMessageStartingWith(message("one"));
+        assertThat(e.getFailures().get(1)).hasMessageStartingWith(message("two"));
+        assertThat(e.getFailures().get(2)).hasMessageStartingWith(message("three"));
+        assertThat(e.getFailures().get(3)).hasMessageStartingWith(message("four"));
       });
+  }
+
+  private static String message(String expected) {
+    return String.format("%n" +
+                         "Expecting actual:%n" +
+                         "  \"Hello World%n\"%n" +
+                         "to contain:%n" +
+                         "  \"" + expected + "\"");
   }
 }

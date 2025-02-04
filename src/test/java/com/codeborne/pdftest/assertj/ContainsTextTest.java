@@ -46,15 +46,33 @@ public class ContainsTextTest {
   @Test
   public void errorDescriptionForSingleParameter() {
     assertThatThrownBy(() -> assertThat(minimalPdf).containsText("Goodbye word"))
-        .isInstanceOf(AssertionError.class)
-        .hasMessage("\nExpected: a PDF containing \"Goodbye word\"\n     but: was \"Hello World\"");
+      .isInstanceOf(AssertionError.class)
+      .hasMessage(String.format("%nExpecting actual:%n" +
+                                "  \"Hello World\"%n" +
+                                "to contain:%n" +
+                                "  \"Goodbye word\" "));
+  }
+
+  @Test
+  public void errorDescription_as() {
+    assertThatThrownBy(() -> assertThat(minimalPdf).as("The World has changed").containsText("Goodbye word"))
+      .isInstanceOf(AssertionError.class)
+      .hasMessage(String.format("[The World has changed] %nExpecting actual:%n" +
+                                "  \"Hello World\"%n" +
+                                "to contain:%n" +
+                                "  \"Goodbye word\" "));
   }
 
   @Test
   public void errorDescriptionForMultipleParameters() {
-    assertThatThrownBy(() -> assertThat(minimalPdf).containsText("Goodbye word", "Privet"))
-            .isInstanceOf(AssertionError.class)
-            .hasMessage("\nExpected: a PDF containing \"Goodbye word\", \"Privet\"\n     but: was \"Hello World\"");
+    assertThatThrownBy(() -> assertThat(minimalPdf).containsText("Goodbye word", "Privet", "Hello World"))
+      .isInstanceOf(AssertionError.class)
+      .hasMessage(String.format("%nExpecting actual:%n" +
+                                "  \"Hello World\"%n" +
+                                "to contain:%n" +
+                                "  [\"Goodbye word\", \"Privet\", \"Hello World\"]%n" +
+                                "but could not find:%n" +
+                                "  [\"Goodbye word\", \"Privet\"]%n "));
   }
 
   @Test

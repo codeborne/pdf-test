@@ -1,50 +1,46 @@
 package com.codeborne.pdftest.assertj;
 
 import com.codeborne.pdftest.PDF;
-import com.codeborne.pdftest.matchers.ContainsExactText;
-import com.codeborne.pdftest.matchers.ContainsText;
-import com.codeborne.pdftest.matchers.ContainsTextCaseInsensitive;
-import com.codeborne.pdftest.matchers.DoesNotContainExactText;
-import com.codeborne.pdftest.matchers.DoesNotContainText;
-import com.codeborne.pdftest.matchers.MatchesText;
+import com.codeborne.pdftest.Spaces;
 import org.assertj.core.api.AbstractAssert;
+import org.assertj.core.internal.Strings;
 
 import java.util.regex.Pattern;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-
 public class PdfAssert extends AbstractAssert<PdfAssert, PDF> {
+  private final Strings strings = Strings.instance();
+
   public PdfAssert(PDF actual) {
     super(actual, PdfAssert.class);
   }
 
   public PdfAssert containsText(String text, String... texts) {
     isNotNull();
-    assertThat(actual, new ContainsText(text, texts));
+    strings.assertContains(info, Spaces.reduce(actual.text), Spaces.reduce(text, texts));
     return this;
   }
 
   public PdfAssert doesNotContainText(String text, String... texts) {
     isNotNull();
-    assertThat(actual, new DoesNotContainText(text, texts));
+    strings.assertDoesNotContain(info, Spaces.reduce(actual.text), Spaces.reduce(text, texts));
     return this;
   }
 
   public PdfAssert containsExactText(String substring) {
     isNotNull();
-    assertThat(actual, new ContainsExactText(substring));
+    strings.assertContains(info, actual.text, substring);
     return this;
   }
 
   public PdfAssert doesNotContainExactText(String substring) {
     isNotNull();
-    assertThat(actual, new DoesNotContainExactText(substring));
+    strings.assertDoesNotContain(info, actual.text, substring);
     return this;
   }
 
   public PdfAssert containsTextCaseInsensitive(String substring) {
     isNotNull();
-    assertThat(actual, new ContainsTextCaseInsensitive(substring));
+    strings.assertContainsIgnoringCase(info, Spaces.reduce(actual.text), Spaces.reduce(substring));
     return this;
   }
 
@@ -54,8 +50,7 @@ public class PdfAssert extends AbstractAssert<PdfAssert, PDF> {
 
   public PdfAssert matchesText(Pattern regex) {
     isNotNull();
-    assertThat(actual, new MatchesText(regex));
+    strings.assertMatches(info, Spaces.reduce(actual.text), regex);
     return this;
   }
-  
 }
