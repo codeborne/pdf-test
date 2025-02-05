@@ -57,7 +57,7 @@ If you use **Maven**, add the following dependency to pom.xml:
   <dependency>
     <groupId>com.codeborne</groupId>
     <artifactId>pdf-test</artifactId>
-    <version>1.9.0</version>
+    <version>1.9.2</version>
     <scope>test</scope>
   </dependency>
 ```
@@ -65,7 +65,7 @@ If you use **Maven**, add the following dependency to pom.xml:
 If you use **Gradle**, add the following dependency to build.gradle:
 
 ```groovy
-  testImplementation 'com.codeborne:pdf-test:1.9.0'
+  testImplementation 'com.codeborne:pdf-test:1.9.2'
 ```
 
 ## How to contribute
