@@ -1,5 +1,8 @@
 == Changelog
 
+=== 2.0.0 (under construction)
+* upgrade to Java 17+
+
 === 1.9.2 (released 05.02.2025)
 * support "as" error description in AssertJ (#61)
 * Bump org.apache.pdfbox:pdfbox from 3.0.3 to 3.0.4
