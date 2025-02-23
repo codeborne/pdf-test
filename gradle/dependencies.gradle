@@ -9,8 +9,8 @@ dependencies {
   implementation group: 'org.assertj', name: 'assertj-core', version: '3.27.3'
   testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
   testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
-  implementation "org.junit.platform:junit-platform-engine:$junitPlatformVersion"
-  implementation "org.junit.platform:junit-platform-launcher:$junitPlatformVersion"
+  testImplementation "org.junit.platform:junit-platform-engine:$junitPlatformVersion"
+  testImplementation "org.junit.platform:junit-platform-launcher:$junitPlatformVersion"
 }
 
 repositories {
