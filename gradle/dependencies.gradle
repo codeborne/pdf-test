@@ -1,9 +1,16 @@
+ext {
+  junitVersion = '5.12.0'
+  junitPlatformVersion = '1.12.0'
+}
+
 dependencies {
   implementation group: 'org.apache.pdfbox', name: 'pdfbox', version: '3.0.4', transitive: true
   implementation group: 'org.hamcrest', name: 'hamcrest', version: '3.0', transitive: false
   implementation group: 'org.assertj', name: 'assertj-core', version: '3.27.3'
-  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.12.0'
-  testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.12.0'
+  testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+  testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+  implementation "org.junit.platform:junit-platform-engine:$junitPlatformVersion"
+  implementation "org.junit.platform:junit-platform-launcher:$junitPlatformVersion"
 }
 
 repositories {
