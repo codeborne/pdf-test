@@ -1,6 +1,6 @@
 ext {
   junitVersion = '5.13.0'
-  junitPlatformVersion = '1.13.0'
+  junitPlatformVersion = '1.13.1'
 }
 
 dependencies {
