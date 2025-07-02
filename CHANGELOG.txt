@@ -1,7 +1,9 @@
 == Changelog
 
-=== 2.0.0 (under construction)
-* upgrade to Java 17+
+=== 2.0.0 (released 01.07.2025)
+* upgrade to Java 11+
+* Bump pdfbox from 3.0.4 to 3.0.5
+* Publish jars to Maven Central instead of OSS
 
 === 1.9.2 (released 05.02.2025)
 * support "as" error description in AssertJ (#61)

@@ -9,11 +9,12 @@ plugins {
   id 'java-library'
   id 'jacoco'
   id 'com.github.kt3k.coveralls' version '2.12.2'
+  id "com.vanniktech.maven.publish" version "0.33.0"
 }
 
 group = 'com.codeborne'
 archivesBaseName = 'pdf-test'
-version = '2.0.0-SNAPSHOT'
+version = '2.0.0'
 
 defaultTasks 'test', 'install'
 

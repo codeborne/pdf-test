@@ -2,5 +2,5 @@
 [compileJava, compileTestJava]*.options.collect {options -> options.debug = true}
 compileJava.options.debugOptions.debugLevel = "source,lines,vars"
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 11
+targetCompatibility = 11

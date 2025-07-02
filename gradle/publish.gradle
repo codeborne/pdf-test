@@ -24,65 +24,30 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 if (project.hasProperty("signing.keyId")) {
-  apply plugin: 'signing'
-  apply plugin: 'maven-publish'
-
-  signing {
-    afterEvaluate {
-      sign publishing.publications.mavenJava
-    }
-  }
-
-  artifacts {
-    archives jar
-    archives sourcesJar
-    archives javadocJar
-  }
-
-  publishing {
-    repositories {
-      maven {
-        name 'Maven'
-        url project.version.endsWith("-SNAPSHOT") ?
-          'https://oss.sonatype.org/content/repositories/snapshots/' :
-          'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
-        credentials {
-          username "$sonatypeUsername"
-          password "$sonatypePassword"
+  mavenPublishing {
+    pom {
+      name = "pdf-test"
+      description = "PDF Test: PDF testing library"
+      inceptionYear = "2015"
+      url = "https://github.com/codeborne/pdf-test"
+      licenses {
+        license {
+          name = "MIT"
+          url = "https://opensource.org/licenses/MIT"
+          distribution = "https://opensource.org/licenses/MIT"
         }
       }
-    }
-    publications {
-      mavenJava(MavenPublication) {
-        groupId "${project.group}"
-        artifactId "${project.name}"
-
-        from components.java
-        artifact(sourcesJar)
-        artifact(javadocJar)
-
-        pom {
-          name = archivesBaseName
-          description = 'PDF Test: PDF testing library'
-          url = 'https://github.com/codeborne/pdf-test'
-          licenses {
-            license {
-              name = 'MIT'
-              url = 'https://opensource.org/licenses/MIT'
-            }
-          }
-          developers {
-            developer {
-              id = 'asolntsev'
-              name = 'Andrei Solntsev'
-            }
-          }
-          scm {
-            connection = 'scm:git@github.com:codeborne/pdf-test.git'
-            developerConnection = 'scm:git@github.com:codeborne/pdf-test.git'
-            url = 'https://github.com/codeborne/pdf-test'
-          }
+      developers {
+        developer {
+          id = 'asolntsev'
+          name = 'Andrei Solntsev'
+          url = "https://github.com/asolntsev/"
         }
+      }
+      scm {
+        url = "https://github.com/codeborne/pdf-test"
+        connection = "scm:git:git://github.com/codeborne/pdf-test.git"
+        developerConnection = "scm:git:ssh://git@github.com/codeborne/pdf-test.git"
       }
     }
   }
