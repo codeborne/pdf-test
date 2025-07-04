@@ -1,5 +1,5 @@
 ext {
-  junitVersion = '5.13.2'
+  junitVersion = '5.13.3'
   junitPlatformVersion = '1.13.2'
 }
 
