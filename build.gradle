@@ -16,7 +16,7 @@ group = 'com.codeborne'
 base.archivesName.set('pdf-test')
 version = '2.0.1-SNAPSHOT'
 
-defaultTasks 'test', 'install'
+defaultTasks 'check', 'publishToMavenLocal'
 
 apply from: 'gradle/compilation.gradle'
 apply from: 'gradle/dependencies.gradle'
