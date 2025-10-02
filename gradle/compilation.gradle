@@ -3,6 +3,9 @@
 compileJava.options.debugOptions.debugLevel = "source,lines,vars"
 
 java {
-  sourceCompatibility = 11
-  targetCompatibility = 11
+  sourceCompatibility = 17
+  targetCompatibility = 17
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(17)
+  }
 }

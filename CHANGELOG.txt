@@ -1,7 +1,7 @@
 == Changelog
 
 === 2.0.1 (under construction)
-* TBD
+* upgrade to Java 17+
 
 === 2.0.0 (released 01.07.2025)
 * upgrade to Java 11+
