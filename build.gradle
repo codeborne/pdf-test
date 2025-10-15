@@ -14,7 +14,7 @@ plugins {
 
 group = 'com.codeborne'
 base.archivesName.set('pdf-test')
-version = '2.1.0'
+version = '2.1.1-SNAPSHOT'
 
 defaultTasks 'check', 'publishToMavenLocal'
 

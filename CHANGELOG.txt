@@ -1,5 +1,8 @@
 == Changelog
 
+=== 2.1.1 (under construction)
+* TBD
+
 === 2.1.0 (released 15.10.2025)
 * upgrade to Java 17+
 * upgrade JUnit from 5.x to 6.0.0
