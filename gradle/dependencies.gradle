@@ -3,7 +3,7 @@ ext {
 }
 
 dependencies {
-  implementation group: 'org.apache.pdfbox', name: 'pdfbox', version: '3.0.5', transitive: true
+  implementation group: 'org.apache.pdfbox', name: 'pdfbox', version: '3.0.6', transitive: true
   implementation group: 'org.hamcrest', name: 'hamcrest', version: '3.0', transitive: false
   implementation group: 'org.assertj', name: 'assertj-core', version: '3.27.6'
   testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
