@@ -38,6 +38,6 @@ jobs:
       - name: 🤖 Merge PR from dependabot
         uses: fastify/github-action-merge-dependabot@v3
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{secrets.DEPENDABOT_PAT}}
           target: minor
           merge-method: rebase
