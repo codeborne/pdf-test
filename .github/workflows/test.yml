@@ -24,20 +24,3 @@ jobs:
         with:
           name: test-report
           path: build/reports/
-
-  auto-merge-dependabot:
-    name: 🤖 Auto merge dependabot PR
-    timeout-minutes: 10
-    needs: run-tests
-    if: ${{ github.actor == 'dependabot[bot]' }}
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: write
-      contents: write
-    steps:
-      - name: 🤖 Merge PR from dependabot
-        uses: fastify/github-action-merge-dependabot@v3
-        with:
-          github-token: ${{secrets.DEPENDABOT_PAT}}
-          target: minor
-          merge-method: rebase
