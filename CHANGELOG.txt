@@ -1,7 +1,12 @@
 == Changelog
 
-=== 2.1.1 (under construction)
+=== 2.1.2 (under construction)
 * TBD
+
+=== 2.1.1 (released 27.06.2026)
+* Bump org.apache.pdfbox:pdfbox from 3.0.5 to 3.0.7
+* Bump org.assertj:assertj-core from 3.27.6 to 3.27.7
+* Bump junitVersion from 6.0.0 to 6.1.0
 
 === 2.1.0 (released 15.10.2025)
 * upgrade to Java 17+
