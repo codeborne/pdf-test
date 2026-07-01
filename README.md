@@ -1,5 +1,7 @@
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.codeborne/pdf-test/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.codeborne/pdf-test)
-[![Coverage Status](https://coveralls.io/repos/github/java-testkit/pdf-test/badge.svg?branch=main)](https://coveralls.io/github/java-testkit/pdf-test?branch=main)
+![Build Status](https://github.com/java-testkit/pdf-test/actions/workflows/test.yml/badge.svg)
+[![Maven Central](https://img.shields.io/maven-central/v/com.codeborne/pdf-test.svg)](https://central.sonatype.com/search?q=pdf-test&namespace=com.codeborne)
+[![MIT License](http://img.shields.io/badge/license-MIT-green.svg)](https://github.com/selenide/selenide/blob/main/LICENSE)
+![Free](https://img.shields.io/badge/free-open--source-green.svg)
 
 # PDF Test
 PDF testing library
