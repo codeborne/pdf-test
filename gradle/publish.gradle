@@ -4,7 +4,7 @@ jar {
       "Automatic-Module-Name": project.group + '.' + project.name.replace('-', '.'),
       "Implementation-Title": project.group + '.' + project.name,
       "Implementation-Version": archiveVersion,
-      "Implementation-Vendor": "Codeborne")
+      "Implementation-Vendor": "Andrei Solntsev & Codeborne")
   }
 }
 
@@ -29,7 +29,7 @@ if (project.hasProperty("signing.keyId")) {
       name = "pdf-test"
       description = "PDF Test: PDF testing library"
       inceptionYear = "2015"
-      url = "https://github.com/codeborne/pdf-test"
+      url = "https://github.com/java-testkit/pdf-test"
       licenses {
         license {
           name = "MIT"
@@ -45,9 +45,9 @@ if (project.hasProperty("signing.keyId")) {
         }
       }
       scm {
-        url = "https://github.com/codeborne/pdf-test"
-        connection = "scm:git:git://github.com/codeborne/pdf-test.git"
-        developerConnection = "scm:git:ssh://git@github.com/codeborne/pdf-test.git"
+        url = "https://github.com/java-testkit/pdf-test"
+        connection = "scm:git:git://github.com/java-testkit/pdf-test.git"
+        developerConnection = "scm:git:ssh://git@github.com/java-testkit/pdf-test.git"
       }
     }
   }

@@ -1,7 +1,7 @@
 == Changelog
 
 === 2.1.2 (under construction)
-* TBD
+* Move GitHub repository to https://github.com/java-testkit/pdf-test
 
 === 2.1.1 (released 27.06.2026)
 * Bump org.apache.pdfbox:pdfbox from 3.0.5 to 3.0.7

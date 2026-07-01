@@ -1,5 +1,5 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.codeborne/pdf-test/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.codeborne/pdf-test)
-[![Coverage Status](https://coveralls.io/repos/github/codeborne/pdf-test/badge.svg?branch=main)](https://coveralls.io/github/codeborne/pdf-test?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/java-testkit/pdf-test/badge.svg?branch=main)](https://coveralls.io/github/java-testkit/pdf-test?branch=main)
 
 # PDF Test
 PDF testing library
@@ -72,7 +72,7 @@ If you use **Gradle**, add the following dependency to build.gradle:
 
 You are welcome to suggest your features and fixes!
 
-Just fork the [pdf-test](https://github.com/codeborne/pdf-test) and create pull request. 
+Just fork the [pdf-test](https://github.com/java-testkit/pdf-test) and create pull request. 
 Any contribution is important!
 
 ** Become part of open-source community! **
